@@ -89,10 +89,7 @@ const CoinDetails = () => {
           `${server}/coins/${params.id}/market_chart?vs_currency=${currency}&days=${days}`
         );
         setCoin(data);
-        console.log("data",data)
-
         setChartArray(chartData.prices);
-        console.log('chartdata',chartData)
         setLoading(false);
       } catch (error) {
         setError(true);
@@ -174,7 +171,6 @@ const CoinDetails = () => {
             <CustomBar
               high={`${currencySymbol}${coin.market_data.high_24h[currency]}`}
               low={`${currencySymbol}${coin.market_data.low_24h[currency]}`}
-              percentageChange={`${coin.market_data.price_change_percentage_24h *20}`}
             />
 
             <Box w={"full"} p="4">
@@ -212,9 +208,9 @@ const Item = ({ title, value }) => (
   </HStack>
 );
 
-const CustomBar = ({ high, low, percentageChange }) => (
+const CustomBar = ({ high, low }) => (
   <VStack w={"full"}>
-    <Progress value={(percentageChange)} colorScheme={"teal"} w={"full"} />
+    <Progress value={50} colorScheme={"teal"} w={"full"} />
     <HStack justifyContent={"space-between"} w={"full"}>
       <Badge children={low} colorScheme={"red"} />
       <Text fontSize={"sm"}>24H Range</Text>
